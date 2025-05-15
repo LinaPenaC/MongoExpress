@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const port = 3000
 
 const itemRoutes = require('./routes/productoRoutes') // Import the item routes
-
+const clienteRoutes = require('./routes/clienteRoutes') // Import the item routes
 
 const app = express(); // Create an Express application
 app.use(cors()); // Enable CORS for all routes
@@ -22,9 +22,9 @@ mongoose.connect('mongodb://localhost:27017/miBaseDeDatos', {//Envío propiedad 
   console.error('Error al conectar a MongoDB', err)
 })
 
-
 // Use the item routes for all requests to /items
 app.use('/api/items', itemRoutes); // Use the item routes for all requests to /items
+app.use('/api/clientes', clienteRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`)
@@ -34,5 +34,4 @@ app.listen(port, () => {
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
-})
-
+});
